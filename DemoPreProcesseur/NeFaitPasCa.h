@@ -1,0 +1,1 @@
+std::cout << "Ne fait jamais ca, c'est juste pour te montrer la nature du copier coller du preprocesseur" << std::endl;
