@@ -4,21 +4,21 @@
 
 std::string LE::TimerCallback::GetStatusString() const
 {
-    const std::string looper = IsLooping() ? "yes" : "no";
+    const std::string playonce = IsPlayingOnce() ? "yes" : "no";
     const std::string act = IsActive() ? "yes" : "no";
-    const std::string res = " (Active = " + act + ") (looping = " + looper + ") (duration = " + std::to_string(GetDuration()) + ") (accumulator = " + std::to_string(_Accumulator) + ")";
+    const std::string res = " (Active = " + act + ") (play once = " + playonce + ") (duration = " + std::to_string(GetDuration()) + ") (accumulator = " + std::to_string(_Accumulator) + ")";
     return res;
 }
 
-LE::TimerCallback::TimerCallback(float InDuration, const std::function<void()>& InTimerCallback, const std::string& InName, bool InAutoActive, bool InLooping)
+LE::TimerCallback::TimerCallback(float InDuration, const std::function<void()>& InTimerCallback, const std::string& InName, bool InAutoActive, bool InIsPlayingOnce)
     : _Duration(InDuration)
     , _Callback(InTimerCallback)
     , _Active(false)
-    , _Looping(InLooping)
+    , _IsPlayingOnce(InIsPlayingOnce)
     , _Name(InName)
 {
     SetVerbosity(true);
-    SetLooping(InLooping);
+    PlayOnce(InIsPlayingOnce);
     SetDuration(InDuration);
     SetActive(InAutoActive);
 }
@@ -29,23 +29,31 @@ bool LE::TimerCallback::Update(float InFrameDuration) {
         _Accumulator += InFrameDuration;
         if (_Accumulator > _Duration)
         {
-            _Callback();
+            if (_Callback)
+            {
+                _Callback();
+            }
             if (_Verbosity)
             {
                 LOG("Timer was triggered" + GetStatusString(), TLevel::eINFO);
             }
-            if (_Looping)
+            if (_IsPlayingOnce)
             {
-                _Accumulator -= _Duration;
+                SetActive(false);
             }
             else
             {
-                SetActive(false);
+                _Accumulator -= _Duration;
             }
             return true;
         }
     }
     return false;
+}
+
+void LE::TimerCallback::SetCallback(const std::function<void()>& InTimerCallback)
+{
+    _Callback = InTimerCallback;
 }
 
 bool LE::TimerCallback::IsActive() const { return _Active; }
@@ -68,11 +76,11 @@ void LE::TimerCallback::SetActive(bool InIsActive) {
     }
 }
 
-bool LE::TimerCallback::IsLooping() const { return _Looping; }
+bool LE::TimerCallback::IsPlayingOnce() const { return _IsPlayingOnce; }
 
-void LE::TimerCallback::SetLooping(bool InIsLooping) {
+void LE::TimerCallback::PlayOnce(bool InIsPlayingOnce) {
 
-    _Looping = InIsLooping;
+    _IsPlayingOnce = InIsPlayingOnce;
 
     if (IsActive())
     {

@@ -24,23 +24,33 @@ namespace LE
 
     void CollisionAnalysis::Analyze(const CollisionEvent& InCollisionEvent)
     {
-        _CollisionEvent = InCollisionEvent;
-
         // Calcul du chevauchement des 2 rectangles
         _OverlapRectangle = GetCollisionRec(InCollisionEvent._MyObject->GetCollisionAtPosition(), InCollisionEvent._OtherObject->GetCollisionAtPosition());
+        _IsNormalVertical = (_OverlapRectangle.width > _OverlapRectangle.height);
+
+        const Vector2 myPosition = InCollisionEvent._MyObject->GetPosition();
+
+        _Separation = _IsNormalVertical ? Vector2{ 0.f, _OverlapRectangle.height } : Vector2{ _OverlapRectangle.width, 0.f };
+
+        if (_IsNormalVertical && myPosition.y > GetPosition().y)
+        {
+            _Separation.y = -_Separation.y;
+        }
+        if (_IsNormalVertical && myPosition.x > GetPosition().x)
+        {
+            _Separation.x = -_Separation.x;
+        }
+
+
+        _CollisionEvent = InCollisionEvent;
+
+       
 
         _Position = {
         _OverlapRectangle.x + _OverlapRectangle.width / 2.0f,
         _OverlapRectangle.y + _OverlapRectangle.height / 2.0f
         };
 
-        // Calcul de la normale
-        _IsNormalVertical = (_OverlapRectangle.width < _OverlapRectangle.height);
-
-        // Calcul du vecteur de séparation
-        _Separation = { _IsNormalVertical ? _OverlapRectangle.width : 0, _IsNormalVertical ? 0 : _OverlapRectangle.height };
-
-        // Appel du callback
         if (_CallbackAnalyzedCollision)
         {
             _CallbackAnalyzedCollision(*this);
@@ -69,7 +79,12 @@ namespace LE
 
     Vector2 CollisionAnalysis::MakeBounce(const Vector2& InVelocity) const
     {
-        return { _IsNormalVertical ? InVelocity.x : -InVelocity.x, _IsNormalVertical ? -InVelocity.y : InVelocity.y };
+        if (_IsNormalVertical)
+
+            return { -InVelocity.x , InVelocity.y };
+        else
+            return { InVelocity.x , -InVelocity.y };
+        
     }
 
     const Vector2& CollisionAnalysis::SeparateMyObject(const Vector2& InPosition) const

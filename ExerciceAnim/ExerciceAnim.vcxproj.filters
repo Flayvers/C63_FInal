@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Fichiers sources">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Fichiers de ressources">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="LoopEngine">
+      <UniqueIdentifier>{49fd8cc6-654b-40ca-b034-b993f7f8fe56}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LoopEngine\src\Button.cpp">
+      <Filter>LoopEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LoopEngine\src\CharacterController.cpp">
+      <Filter>LoopEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LoopEngine\src\CollisionAnalysis.cpp">
+      <Filter>LoopEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LoopEngine\src\Engine.cpp">
+      <Filter>LoopEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LoopEngine\src\GameObject.cpp">
+      <Filter>LoopEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LoopEngine\src\GameObjectAnimated.cpp">
+      <Filter>LoopEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LoopEngine\src\GameObjectText.cpp">
+      <Filter>LoopEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LoopEngine\src\GameObjectTextCounter.cpp">
+      <Filter>LoopEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LoopEngine\src\Global.cpp">
+      <Filter>LoopEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LoopEngine\src\Logger.cpp">
+      <Filter>LoopEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LoopEngine\src\Projectile.cpp">
+      <Filter>LoopEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LoopEngine\src\Scene.cpp">
+      <Filter>LoopEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LoopEngine\src\ServiceLocator.cpp">
+      <Filter>LoopEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LoopEngine\src\TimerCallback.cpp">
+      <Filter>LoopEngine</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\LoopEngine\src\BaseObject.h">
+      <Filter>LoopEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LoopEngine\src\Button.h">
+      <Filter>LoopEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LoopEngine\src\CharacterController.h">
+      <Filter>LoopEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LoopEngine\src\CollisionAnalysis.h">
+      <Filter>LoopEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LoopEngine\src\Engine.h">
+      <Filter>LoopEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LoopEngine\src\GameObject.h">
+      <Filter>LoopEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LoopEngine\src\GameObjectAnimated.h">
+      <Filter>LoopEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LoopEngine\src\GameObjectText.h">
+      <Filter>LoopEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LoopEngine\src\GameObjectTextCounter.h">
+      <Filter>LoopEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LoopEngine\src\Global.h">
+      <Filter>LoopEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LoopEngine\src\Logger.h">
+      <Filter>LoopEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LoopEngine\src\Projectile.h">
+      <Filter>LoopEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LoopEngine\src\Scene.h">
+      <Filter>LoopEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LoopEngine\src\ServiceLocator.h">
+      <Filter>LoopEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LoopEngine\src\TimerCallback.h">
+      <Filter>LoopEngine</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

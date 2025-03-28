@@ -11,24 +11,27 @@
 using namespace std;
 namespace LE
 {
-    class CharacterController : public GameObjectSingleImage
-    {
-    protected:
-        float _Velocity = 400.f;
-        array<int, 4> _ControlUpLeftDownRight = { KEY_W,KEY_A,KEY_S,KEY_D };
-        CollisionAnalysis _CollisionAnalysis;
+	class CharacterController : public GameObjectSingleImage
+	{
+	protected:
+		float _Velocity = 400.f;
+		array<int, 4> _ControlUpLeftDownRight = { KEY_W,KEY_A,KEY_S,KEY_D };
+		CollisionAnalysis _CollisionAnalysis;
 
-    public:
-        CharacterController(const string& InFilePath, const Vector2& InPosition = { 0.f,0.f }, float InVelocity = 500.f, array<int, 4> InControlUpLeftDownRight = { KEY_W,KEY_A,KEY_S,KEY_D }, const string& InObjectName = "CharacterController");
-        virtual ~CharacterController();
+		void Bounce(const const CollisionAnalysis& InCollisionAnalyze);
 
-        void SetVelocity(float Invelocity);
-        float GetVelocity() const;
+	public:
+		CharacterController(const string& InFilePath, const Vector2& InPosition = { 0.f,0.f }, float InVelocity = 500.f, array<int, 4> InControlUpLeftDownRight = { KEY_W,KEY_A,KEY_S,KEY_D }, const string& InObjectName = "CharacterController");
+		virtual ~CharacterController();
 
-        virtual void PreUpdate() override;
-        virtual void DrawDebug() override;
+		void SetVelocity(float Invelocity);
+		float GetVelocity() const;
 
-    protected:
-        void HandleContinuousContact(const CollisionAnalysis& analysis);
-    };
+		virtual void PreUpdate() override;
+		virtual void DrawDebug() override;
+
+
+		//Simule un mouvement dans la direction donnee
+		//TODO: void SimulateControl(const Vector2& InDirection)
+	};
 }
