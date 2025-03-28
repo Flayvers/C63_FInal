@@ -4,5 +4,6 @@
 namespace LE
 {
 	class IBaseObject
-	{};
+	{
+	};
 }

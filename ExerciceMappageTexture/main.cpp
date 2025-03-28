@@ -22,11 +22,13 @@ int main()
 
     shared_ptr<LE::Projectile> proj = make_shared<LE::Projectile>(ballImgPath, Vector2{ 500.f,500.f });
     proj->SetScale(1.1f);
+    proj->SetCollisionMask(1);
     shared_ptr<LE::CharacterController> character = make_shared<LE::CharacterController>(charImgPath, Vector2{ 200.f,200.f });
     character->SetScale(1.5f);
+    character->SetCollisionMask(1);
 
     shared_ptr<LE::GameObjectTile> wall = make_shared<LE::GameObjectTile>(brickImgPath, Rectangle{ 200.f,700.f,700.f,300.f });
-
+    wall->SetCollisionMask(1);
     shared_ptr<LE::Button> btnVelocity = make_shared<LE::Button>(0, 50, 100, 50, "Velocity",
         [&proj]() {
             if (proj)

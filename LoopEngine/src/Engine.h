@@ -31,6 +31,20 @@ namespace LE
 
 	class Engine : public ServiceBase<IEngineService>
 	{
+	protected:
+		map<string, shared_ptr<LE::Scene>> _NameToScene;
+		weak_ptr<LE::Scene> _ActiveScene;
+		Color _ClearColor = BLACK;
+		int _ResolutionX = 800;
+		int _ResolutionY = 800;
+		int _FPS = 60;
+		string _Title = "Sans titre";
+
+		bool _DebugMode = false;
+		bool _RequestClose = false;
+
+		vector<function<void(LE::Engine&)>> _EngineCommandList;
+
 	public:
 		//Log INFO: À la fin du constructeur, signaler que Engine est construit.
 		//Log ERROR: Resolution négative, TargetFPS en dehors de [5,100].
@@ -73,21 +87,9 @@ namespace LE
 		//Log INFO: Scène "InNewSceneName" maintenant active.
 		//Log WARNING: Scène "InNewSceneName" est déjà activée.
 		//Log ERROR: Scène "InNewSceneName" n'existe pas.
-		void SwitchScene(const string&  InNewSceneName);
+		void SwitchScene(const string& InNewSceneName);
 		//Vérifie si la scène est enregistrée dans Engine
 		bool IsSceneRegistered(const string& InNewSceneName) const;
-
-	private:
-		int _ResolutionX;
-		int _ResolutionY;
-		string _Title;
-		int _TargetFPS;
-		Color _ClearColor;
-		bool _DebugMode;
-		map<string, shared_ptr<Scene>> _RegisteredScenes;
-		shared_ptr<Scene> _CurrentActiveScene;
-		vector<function<void(Engine&)>> _LateUpdateCommands;
-		bool _RequestClose;
 	};
 }
 

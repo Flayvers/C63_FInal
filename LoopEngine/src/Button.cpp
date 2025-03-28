@@ -1,58 +1,48 @@
 #include "Button.h"
 #include "Logger.h"
 
-namespace LE
+LE::Button::Button(int InPositionX, int InPositionY, int InLargeur, int InHauteur, const std::string& InText, std::function<void()> InActionToDo, const std::string& InName)
+	:_Rectancle{ (float)InPositionX, (float)InPositionY, (float)InLargeur, (float)InHauteur }
+	, _Text(InText)
+	, _ActionToDo(InActionToDo)
 {
-    Button::Button(int InPositionX, int InPositionY, int InLargeur, int InHauteur, const std::string& InText, std::function<void()> InActionToDo, const std::string& InName)
-        : GameObject2D(Vector2{ static_cast<float>(InPositionX), static_cast<float>(InPositionY) }, Vector2{ static_cast<float>(InLargeur), static_cast<float>(InHauteur) }, 0, InName),
-        _PositionX(InPositionX), _PositionY(InPositionY), _Largeur(InLargeur), _Hauteur(InHauteur),
-        _Text(InText), _ActionToDo(InActionToDo), _Name(InName),
-        _ColorNeutral(LIGHTGRAY), _HoverNeutral(GRAY), _PressedNeutral(DARKGRAY)
-    {
-        if (_Largeur < 0 || _Hauteur < 0)
-        {
-            LOG("Bouton nommé " + _Name + " a une largeur ou une hauteur négative (changé pour (200,50)).", eWARNING);
-            _Largeur = 200;
-            _Hauteur = 50;
-        }
-    }
+	if (_Rectancle.width <= 0.f || _Rectancle.height <= 0.f)
+	{
+		LOG("Le bouton nomme " + _Name + " a une grosseur invalide. Valeur modifie pour (200,50)", TLevel::eWARNING);
+		_Rectancle.width = 200.f;
+		_Rectancle.height = 50.f;
+	}
+}
 
-    Button::~Button() {}
+LE::Button::~Button()
+{
+}
 
-    void Button::SetColors(const Color& InColorNeutral, const Color& InHoverNeutral, const Color& InPressedNeutral)
-    {
-        _ColorNeutral = InColorNeutral;
-        _HoverNeutral = InHoverNeutral;
-        _PressedNeutral = InPressedNeutral;
-    }
+void LE::Button::SetColors(const Color& InColorNeutral, const Color& InColorHover, const Color& InColorPressed)
+{
+	_ColorNeutral = InColorNeutral;
+	_ColorHover = InColorHover;
+	_ColorPressed = InColorPressed;
+}
 
-    void Button::Draw2D()
-    {
-        Vector2 mousePosition = GetMousePosition();
-        bool isMouseOver = (mousePosition.x >= _PositionX && mousePosition.x <= _PositionX + _Largeur &&
-            mousePosition.y >= _PositionY && mousePosition.y <= _PositionY + _Hauteur);
+void LE::Button::Draw2D()
+{
+	const bool isMouseInside = CheckCollisionPointRec(GetMousePosition(), _Rectancle);
+	const bool isMousePressed = IsMouseButtonPressed(0);
+	Color activeColor = isMouseInside ? _ColorHover : _ColorNeutral;
+	if (isMouseInside && isMousePressed)
+	{
+		if (_ActionToDo != nullptr)
+		{
+			_ActionToDo();
+		}
+	}
 
-        Color currentColor = _ColorNeutral;
-        if (isMouseOver)
-        {
-            currentColor = IsMouseButtonDown(MOUSE_BUTTON_LEFT) ? _PressedNeutral : _HoverNeutral;
+	if (isMouseInside && IsMouseButtonDown(0))
+	{
+		activeColor = _ColorPressed;
+	}
 
-            if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
-            {
-                LOG("Bouton nommé " + _Name + " appuyé.", eINFO);
-                if (_ActionToDo)
-                {
-                    _ActionToDo();
-                    LOG("Bouton nommé " + _Name + " a exécuté son action.", eINFO);
-                }
-                else
-                {
-                    LOG("Bouton nommé " + _Name + " n'a pas exécuté son action car elle est vide.", eINFO);
-                }
-            }
-        }
-
-        DrawRectangle(_PositionX, _PositionY, _Largeur, _Hauteur, currentColor);
-        DrawText(_Text.c_str(), _PositionX + 10, _PositionY + 10, 20, BLACK);
-    }
+	DrawRectangle((int)_Rectancle.x, (int)_Rectancle.y, (int)_Rectancle.width, (int)_Rectancle.height, activeColor);
+	DrawText(_Text.c_str(), (int)_Rectancle.x, (int)_Rectancle.y, 24, BLACK);
 }

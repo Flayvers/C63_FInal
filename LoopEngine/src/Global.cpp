@@ -1,4 +1,5 @@
 #include "Global.h"
+#include "raylib.h"
 
 std::shared_ptr<LE::Engine> InitLoopEngine(int InResolutionX, int InResolutionY, const string& InTitle, int InTargetFPS)
 {
@@ -22,4 +23,14 @@ LE::ILoggerService& GetILogger()
 void SendLateCommand(const std::function<void(LE::Engine&)>& InNewCommand)
 {
     GetIEngine().SendLateUpdateCommand(InNewCommand);
+}
+
+float RadianToDegree(float InAngleRadian)
+{
+    return RAD2DEG * InAngleRadian;
+}
+
+float DegreeToRadian(float InAngleDegree)
+{
+    return DEG2RAD * InAngleDegree;
 }

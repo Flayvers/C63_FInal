@@ -17,13 +17,21 @@ namespace LE
 	struct CollisionEvent
 	{
 		Vector2 _Position;
-		const GameObject2D * _OtherObject;
+		GameObject2D const* _MyObject;
+		GameObject2D const* _OtherObject;
+
 	};
 
 	//Object générique avec une position 2D. Peut collisionner avec d'autres objets.
 	//Peut optionnellement avoir un nom.
 	class GameObject2D : public IBaseObject, public std::enable_shared_from_this<GameObject2D>
 	{
+	protected:
+		Rectangle _CollisionBox = Rectangle{ 0.f,0.f,100.f,100.f };
+		int _CollisionMaks = 0;
+		std::string _Name = "Nameless";
+		std::function<void(const CollisionEvent&)> _CallbackOnCollision = nullptr;
+
 	public:
 		GameObject2D(const std::string& InName = "GameObject2D");
 		//Log WARNING: Objet nommé X a une boite de collision invalide (valeur négative). Collision désactivée (collision mask = 0).
@@ -46,7 +54,7 @@ namespace LE
 		//Retourne la grosseur x et y de la boite de collision
 		const Vector2& GetCollisionBox() const;
 		//Retourne un rectangle placé à la position de l'objet et de la grosseur de la boîte de collision
-		const Rectangle& GetCollisionAtPosition() const;
+		virtual const Rectangle& GetCollisionAtPosition() const;
 
 		//*=*=*=*=*=*=*=*AVANCÉ=*=*=*=*=*=*=*=*=//
 		//Dans la classe Scene, dans le PreUpdate, après avoir appelé PreUpdate sur les objets de jeu, on test les collisions entre tous les objets
@@ -64,77 +72,73 @@ namespace LE
 		virtual void PreUpdate() {}
 		virtual void Draw3D() {}
 		virtual void Draw2D() {}
+		virtual void DrawDebug();
 		virtual void LateUpdate() {}
 		//======FIN======
 
 		virtual void Destroy();
-
-		//peut etre modifier au besoin
-	private:
-		Vector2 _Position = { 0,0 };
-		Vector2 _CollisionBox = { 100, 100 };
-		int _CollisionMask = 0;
-		std::string _Name = "GameObject2D";
-		int _CollisionGroup = 0;
-		std::function<void(const CollisionEvent&)> _OnCollisionCallback;
 	};
 
 	//Affiche une image à la position et le scale donné.
 	class GameObjectSingleImage : public GameObject2D
 	{
-		public:
-			//Log ERROR: Objet nommé X a un nom de fichier vide.
-			//Log WARNING: Objet nommé X réfère un fichier non-existant. Note: Il existe une fonction pour vérifier si un fichier existe dans Raylib!
-			//Chemin valide pour accéder au fichier dans {racineVSProjet}/res/Test-Image.png:
-			//string(GetWorkingDirectory()) + "\\res\\Test-Image.png"
-			GameObjectSingleImage(const std::string& InImageFileName,const std::string& InName = "GameObjectSingleImage" );
-			//Attention, il faut vérifier si Image et Texture sont encore chargés!
-			virtual ~GameObjectSingleImage();
+	protected:
+		Image _Image;
+		Texture _Texture;
+		Color _Tint = WHITE;
+		float _Rotation = 0.0f;
+		float _Scale = 1.0f;
+		std::string _FilePathToLoad;
+		bool _IsLoaded = false;
 
-			void SetScale(float InScale);
-			float GetScale() const;
+	public:
+		//Log ERROR: Objet nommé X a un nom de fichier vide.
+		//Log WARNING: Objet nommé X réfère un fichier non-existant. Note: Il existe une fonction pour vérifier si un fichier existe dans Raylib!
+		//Chemin valide pour accéder au fichier dans {racineVSProjet}/res/Test-Image.png:
+		//string(GetWorkingDirectory()) + "\\res\\Test-Image.png"
+		GameObjectSingleImage(const std::string& InImageFileName, const std::string& InName = "GameObjectSingleImage");
+		//Attention, il faut vérifier si Image et Texture sont encore chargés!
+		virtual ~GameObjectSingleImage();
 
-			void SetRotation(float InRotationInDegree);
-			float GetRotation() const;
+		void SetScale(float InScale);
+		float GetScale() const;
 
-			void SetColorTint(const Color& InColorTint);
-			const Color& GetColorTint() const;
+		void SetRotation(float InRotationInDegree);
+		float GetRotation() const;
 
-			//L'Image et la Texture sont chargées au moment du load.
-			//Log WARNING: Objet nommé X réfère un fichier non-existant. Note: Il existe une fonction pour vérifier si un fichier existe dans Raylib!
-			//Log WARNING: Objet nommé X a déjà chargé son image et ne peut la recharger.
-			virtual void Load();
-			//L'Image et la Texture sont déchargées au moment du unload.
-			//Log WARNING: Objet nommé X n'a pas d'image chargé et ne peut la décharger.
-			virtual void Unload();
+		void SetColorTint(const Color& InColorTint);
+		const Color& GetColorTint() const;
 
-			//Returne l'objet Image
-			const Image& GetImage() const;
-			//Returne l'objet Texture
-			const Texture& GetTexture() const;
-			//Affiche la Texture à la position et la grosseur fournie
-			//Si l'image n'est pas chargé, on affiche un carré de la couleur tentée (ColorTint) de la grosseur de la boite de collision
-			virtual void Draw2D() override;
+		virtual const Rectangle& GetCollisionAtPosition() const;
 
-			//Note: les autres méthodes fournies par le parent (PreUpdate,Draw3D et LateUpdate) n'ont pas besoin d'être codée ici
-			//car on en a pas besoin!
-		private:
-			std::string _ImageFileName = "";
-			float _Scale = 0.;
-			float _RotationInDegree = 0.;
-			Color _ColorTint;
-			Image _Image = { 0 };
-			Texture _Texture = { 0 };
+		//L'Image et la Texture sont chargées au moment du load.
+		//Log WARNING: Objet nommé X réfère un fichier non-existant. Note: Il existe une fonction pour vérifier si un fichier existe dans Raylib!
+		//Log WARNING: Objet nommé X a déjà chargé son image et ne peut la recharger.
+		virtual void Load();
+		//L'Image et la Texture sont déchargées au moment du unload.
+		//Log WARNING: Objet nommé X n'a pas d'image chargé et ne peut la décharger.
+		virtual void Unload();
+
+		//Returne l'objet Image
+		const Image& GetImage() const;
+		//Returne l'objet Texture
+		const Texture& GetTexture() const;
+		//Affiche la Texture à la position et la grosseur fournie
+		//Si l'image n'est pas chargé, on affiche un carré de la couleur tentée (ColorTint) de la grosseur de la boite de collision
+		virtual void Draw2D() override;
+
+		//Note: les autres méthodes fournies par le parent (PreUpdate,Draw3D et LateUpdate) n'ont pas besoin d'être codée ici
+		//car on en a pas besoin!
 	};
+
 	class GameObjectTile : public GameObjectSingleImage
 	{
+	protected:
+		float _TextureScale = 1.0f;
+
 	public:
 		GameObjectTile(const std::string& InImageFileName, const Rectangle& InSceneRectangle);
-		virtual ~GameObjectTile();
 		virtual void Draw2D() override;
-	private:
-		Rectangle _SceneRectangle;
 	};
-
 }
 

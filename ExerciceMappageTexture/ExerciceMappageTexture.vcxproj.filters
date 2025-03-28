@@ -14,12 +14,15 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
     <Filter Include="LoopEngine">
-      <UniqueIdentifier>{dc87b48d-7978-47ce-980f-2734af1026f1}</UniqueIdentifier>
+      <UniqueIdentifier>{aa4e4fee-c53a-4e48-bdaf-40ddac52e8f9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LoopEngine\src\TimerCallback.cpp">
+      <Filter>LoopEngine</Filter>
     </ClCompile>
     <ClCompile Include="..\LoopEngine\src\ServiceLocator.cpp">
       <Filter>LoopEngine</Filter>
@@ -36,16 +39,13 @@
     <ClCompile Include="..\LoopEngine\src\Global.cpp">
       <Filter>LoopEngine</Filter>
     </ClCompile>
-    <ClCompile Include="..\LoopEngine\src\GameObjectTile.cpp">
-      <Filter>LoopEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\LoopEngine\src\GameObjectSingleImage.cpp">
-      <Filter>LoopEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\LoopEngine\src\GameObject2D.cpp">
+    <ClCompile Include="..\LoopEngine\src\GameObject.cpp">
       <Filter>LoopEngine</Filter>
     </ClCompile>
     <ClCompile Include="..\LoopEngine\src\Engine.cpp">
+      <Filter>LoopEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LoopEngine\src\CollisionAnalysis.cpp">
       <Filter>LoopEngine</Filter>
     </ClCompile>
     <ClCompile Include="..\LoopEngine\src\CharacterController.cpp">
@@ -56,6 +56,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\LoopEngine\src\TimerCallback.h">
+      <Filter>LoopEngine</Filter>
+    </ClInclude>
     <ClInclude Include="..\LoopEngine\src\ServiceLocator.h">
       <Filter>LoopEngine</Filter>
     </ClInclude>
@@ -75,6 +78,9 @@
       <Filter>LoopEngine</Filter>
     </ClInclude>
     <ClInclude Include="..\LoopEngine\src\Engine.h">
+      <Filter>LoopEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LoopEngine\src\CollisionAnalysis.h">
       <Filter>LoopEngine</Filter>
     </ClInclude>
     <ClInclude Include="..\LoopEngine\src\CharacterController.h">

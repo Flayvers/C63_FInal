@@ -133,6 +133,7 @@
     <ClInclude Include="src\BaseObject.h" />
     <ClInclude Include="src\Button.h" />
     <ClInclude Include="src\CharacterController.h" />
+    <ClInclude Include="src\CollisionAnalysis.h" />
     <ClInclude Include="src\Engine.h" />
     <ClInclude Include="src\GameObject.h" />
     <ClInclude Include="src\Global.h" />
@@ -140,20 +141,21 @@
     <ClInclude Include="src\Projectile.h" />
     <ClInclude Include="src\Scene.h" />
     <ClInclude Include="src\ServiceLocator.h" />
+    <ClInclude Include="src\TimerCallback.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\Button.cpp" />
     <ClCompile Include="src\CharacterController.cpp" />
+    <ClCompile Include="src\CollisionAnalysis.cpp" />
     <ClCompile Include="src\Engine.cpp" />
-    <ClCompile Include="src\GameObject2D.cpp" />
-    <ClCompile Include="src\GameObjectSingleImage.cpp" />
-    <ClCompile Include="src\GameObjectTile.cpp" />
+    <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\Global.cpp" />
     <ClCompile Include="src\Logger.cpp" />
     <ClCompile Include="src\Projectile.cpp" />
     <ClCompile Include="src\Scene.cpp" />
     <ClCompile Include="src\ServiceLocator.cpp" />
+    <ClCompile Include="src\TimerCallback.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

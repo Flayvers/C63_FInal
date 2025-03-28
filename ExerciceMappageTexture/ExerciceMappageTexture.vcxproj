@@ -133,21 +133,22 @@
   <ItemGroup>
     <ClCompile Include="..\LoopEngine\src\Button.cpp" />
     <ClCompile Include="..\LoopEngine\src\CharacterController.cpp" />
+    <ClCompile Include="..\LoopEngine\src\CollisionAnalysis.cpp" />
     <ClCompile Include="..\LoopEngine\src\Engine.cpp" />
-    <ClCompile Include="..\LoopEngine\src\GameObject2D.cpp" />
-    <ClCompile Include="..\LoopEngine\src\GameObjectSingleImage.cpp" />
-    <ClCompile Include="..\LoopEngine\src\GameObjectTile.cpp" />
+    <ClCompile Include="..\LoopEngine\src\GameObject.cpp" />
     <ClCompile Include="..\LoopEngine\src\Global.cpp" />
     <ClCompile Include="..\LoopEngine\src\Logger.cpp" />
     <ClCompile Include="..\LoopEngine\src\Projectile.cpp" />
     <ClCompile Include="..\LoopEngine\src\Scene.cpp" />
     <ClCompile Include="..\LoopEngine\src\ServiceLocator.cpp" />
+    <ClCompile Include="..\LoopEngine\src\TimerCallback.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\LoopEngine\src\BaseObject.h" />
     <ClInclude Include="..\LoopEngine\src\Button.h" />
     <ClInclude Include="..\LoopEngine\src\CharacterController.h" />
+    <ClInclude Include="..\LoopEngine\src\CollisionAnalysis.h" />
     <ClInclude Include="..\LoopEngine\src\Engine.h" />
     <ClInclude Include="..\LoopEngine\src\GameObject.h" />
     <ClInclude Include="..\LoopEngine\src\Global.h" />
@@ -155,6 +156,7 @@
     <ClInclude Include="..\LoopEngine\src\Projectile.h" />
     <ClInclude Include="..\LoopEngine\src\Scene.h" />
     <ClInclude Include="..\LoopEngine\src\ServiceLocator.h" />
+    <ClInclude Include="..\LoopEngine\src\TimerCallback.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

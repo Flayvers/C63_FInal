@@ -5,23 +5,23 @@
 #include <map>
 
 class IService {
-    public:
-        virtual ~IService() = default;
+public:
+    virtual ~IService() = default;
 
-        /// Virtual function to get the base type index of the service.
-        /// Should be overridden in each service interface to return the typeid of the base interface.
-        virtual std::type_index getTypeIndex() const = 0;
+    /// Virtual function to get the base type index of the service.
+    /// Should be overridden in each service interface to return the typeid of the base interface.
+    virtual std::type_index getTypeIndex() const = 0;
 };
 
 /// Specific service base class.
 /// Inherit from this instead of IService directly for services with multiple implementations.
 template<typename T>
 class ServiceBase : public T {
-    public:
-        /// Returns the type index of the base interface.
-        std::type_index getTypeIndex() const override {
-            return std::type_index(typeid(T));
-        }
+public:
+    /// Returns the type index of the base interface.
+    std::type_index getTypeIndex() const override {
+        return std::type_index(typeid(T));
+    }
 };
 
 class ServiceLocator {
@@ -67,16 +67,6 @@ public:
             throw std::runtime_error("Service not found");
         }
         return std::static_pointer_cast<T>(it->second);
-    }
-    template<typename T>
-    bool hasService() const {
-        std::lock_guard<std::mutex> lock(mutex);
-        auto typeIndex = std::type_index(typeid(T));
-        auto it = services.find(typeIndex);
-        if (it == services.end()) {
-            return false;
-        }
-        return true;
     }
 };
 

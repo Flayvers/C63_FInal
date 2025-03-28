@@ -2,9 +2,6 @@
 
 #include <string>
 #include <deque>
-#include <iostream>
-#include <fstream>
-#include <cassert>
 #include "ServiceLocator.h"
 #include "BaseObject.h"
 
@@ -15,7 +12,7 @@
 //Il devra ajouter le fichier et la ligne au message passé par l'utilisateur.
 //Exemple d'utilisation dans le code: LOG("Attention: objet dans un état invalide!",LE::TLevel::eERROR)
 //Affichera dans la console: ERROR - main.cpp:36 Attention: objet dans un état invalide!
-#define LOG(msg, level)  if(service_locator.hasService<ILoggerService>()){ service_locator.getService<ILoggerService>()->Log(std::string(__FILENAME__) + ":" + to_string(__LINE__) + " " + msg, level);}
+#define LOG(msg, level) if(service_locator.getService<ILoggerService>()){ service_locator.getService<ILoggerService>()->Log(std::string(__FILENAME__) + ":" + to_string(__LINE__) + " " + (msg), level);}
 
 using namespace std;
 namespace LE
@@ -31,6 +28,8 @@ namespace LE
         eNONE = eMAX,
     };
 
+    static const std::string __LevelPrefix[TLevel::eMAX + 1] = { "INFO","WARNING","DEBUG","ERROR","MAX" };
+
     class ILoggerService : public IService, public IBaseObject
     {
     public:
@@ -44,7 +43,7 @@ namespace LE
         virtual void Draw2D() const = 0;
     };
 
-    class Logger : public ServiceBase<ILoggerService>
+    class Logger : public ServiceBase<ILoggerService>, public IBaseObject
     {
     public:
 
@@ -69,24 +68,23 @@ namespace LE
         //Cette méthode doit être appelé dans la méthode StartGame (qui contient le while) de Engine.
         virtual void Draw2D() const override;
 
-
     private:
         TLevel _LoggingLevel = eDEBUG;
         TLevel _AbortLevel = TLevel::eERROR;
 
-        bool _IsConsoleTraceActive = true;
+        bool _IsConsoleTraceActive = false;
         bool _IsFileTraceActive = false;
-
-        bool _IsScreenTraceActive = true;
-
+        bool _IsScreenTraceActive = false;
 
         ofstream* _ptrFileStream = nullptr;
         string _TraceFileName = "LoopEngine.log";
-        std::deque<std::string> _ScreenTraceMessages;
 
         //Méthodes suggérées mais pas obligatoire.
         bool TryOpenFile();
         bool TryCloseFile();
+
+        static constexpr int __ScreenMaxMessage = 3;
+        std::deque<std::string> _QueueMsg;
     };
 };
 
