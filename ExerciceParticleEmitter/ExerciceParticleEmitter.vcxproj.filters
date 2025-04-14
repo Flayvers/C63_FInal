@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="LoopEngine">
+      <UniqueIdentifier>{0a69fc3c-7072-448c-b703-82663deee94a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LoopEngine\GameObject">
+      <UniqueIdentifier>{1edffe34-5d8f-45b6-bfd2-105dee0daf83}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LoopEngine\CollisionAnalysis.cpp">
+      <Filter>LoopEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LoopEngine\Engine.cpp">
+      <Filter>LoopEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LoopEngine\Global.cpp">
+      <Filter>LoopEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LoopEngine\Logger.cpp">
+      <Filter>LoopEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LoopEngine\RessourceManager.cpp">
+      <Filter>LoopEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LoopEngine\ServiceLocator.cpp">
+      <Filter>LoopEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LoopEngine\TimerCallback.cpp">
+      <Filter>LoopEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LoopEngine\Visitor.cpp">
+      <Filter>LoopEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LoopEngine\GameObject\GO.cpp">
+      <Filter>LoopEngine\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LoopEngine\GameObject\GOAnimated.cpp">
+      <Filter>LoopEngine\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LoopEngine\GameObject\GOButton.cpp">
+      <Filter>LoopEngine\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LoopEngine\GameObject\GOCharacterController.cpp">
+      <Filter>LoopEngine\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LoopEngine\GameObject\GOComposite.cpp">
+      <Filter>LoopEngine\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LoopEngine\GameObject\GOParticleEmitter.cpp">
+      <Filter>LoopEngine\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LoopEngine\GameObject\GOProjectile.cpp">
+      <Filter>LoopEngine\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LoopEngine\GameObject\GOSimpleTexture.cpp">
+      <Filter>LoopEngine\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LoopEngine\GameObject\GOText.cpp">
+      <Filter>LoopEngine\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LoopEngine\GameObject\GOTextCounter.cpp">
+      <Filter>LoopEngine\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LoopEngine\GameObject\GOTile.cpp">
+      <Filter>LoopEngine\GameObject</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\LoopEngine\BaseObject.h">
+      <Filter>LoopEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LoopEngine\CollisionAnalysis.h">
+      <Filter>LoopEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LoopEngine\Engine.h">
+      <Filter>LoopEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LoopEngine\Global.h">
+      <Filter>LoopEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LoopEngine\Logger.h">
+      <Filter>LoopEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LoopEngine\RessourceManager.h">
+      <Filter>LoopEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LoopEngine\ServiceLocator.h">
+      <Filter>LoopEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LoopEngine\TimerCallback.h">
+      <Filter>LoopEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LoopEngine\Visitor.h">
+      <Filter>LoopEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LoopEngine\GameObject\GOTile.h">
+      <Filter>LoopEngine\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LoopEngine\GameObject\GO.h">
+      <Filter>LoopEngine\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LoopEngine\GameObject\GOAnimated.h">
+      <Filter>LoopEngine\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LoopEngine\GameObject\GOButton.h">
+      <Filter>LoopEngine\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LoopEngine\GameObject\GOCharacterController.h">
+      <Filter>LoopEngine\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LoopEngine\GameObject\GOComposite.h">
+      <Filter>LoopEngine\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LoopEngine\GameObject\GOParticleEmitter.h">
+      <Filter>LoopEngine\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LoopEngine\GameObject\GOProjectile.h">
+      <Filter>LoopEngine\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LoopEngine\GameObject\GOSimpleTexture.h">
+      <Filter>LoopEngine\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LoopEngine\GameObject\GOText.h">
+      <Filter>LoopEngine\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LoopEngine\GameObject\GOTextCounter.h">
+      <Filter>LoopEngine\GameObject</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
