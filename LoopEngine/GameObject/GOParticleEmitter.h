@@ -125,15 +125,21 @@ namespace LE
 					//8) Trouvez des paramètres adéquats afin de faire une averse de pluie (Émetteur Rain).
 					//Inspirez-vous de ParticleEmitterParamSmoke pour débuter
 					//Une chose est déja faite pour vous la boite de collision de l'émetteur de pluie est {1000,1}.
+					_RangeBurstQuantity[0] = 4;
+					_RangeBurstQuantity[1] = 8;
 
+					_RangeInitialLinearVelocity[0] = { 300.f, 600.f };
+					_RangeInitialLinearVelocity[1] = { 0.f, 0.f };
+					_RangeSize = { 70.f, 70.f };
+					_RangeDieTime = { 10.f, 10.f };
+					_RangeInitialRotationVelocity = { 0.f, 0.f };
 
+					_LinearAcceleration = { 100.f, 100.f };
+					_StartEndColor[0] = WHITE;
+					_StartEndColor[1] = BLANK;
 
-
-
-
-
-
-
+					_IsEmittingContinuously = true;
+					_RangeNextBurstTime = { 0.05f,0.1f };
 
 					//Fin de l'exercice
 					///////////////////////////

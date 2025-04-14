@@ -27,7 +27,7 @@ int main()
     ///////////////////////////
     //1) Prenez le temps d'étudier ce main et familiarisez-vous avec la nouvelle manière de se faire une scène.
     //Ajoutez un nouvel environnement de test au centre pour l'effet d'explosion de terre (dirt)
-
+    root->AddGameObject2D(NewEmitterTestEnviro("Dirt explosion", particleDirtFilePath, { 450.f, 500.f }, LE::GOParticleEmitter::ParticleEmitterParamDirt(), { 100.f, 100.f }));
     //Allez ensuite dans NewEmitterTestEnviro(...)
     ///////////////////////////
 
@@ -57,7 +57,9 @@ shared_ptr<LE::GOComposite> NewEmitterTestEnviro(const string& EnviroName, const
     //L'autre est de dériver d'un GOComposite et de l'assembler dans son constructeur. Les deux sont viables!
     //Ajoutez à rootEnviroEmitter un texte contenant le nom de l'environnement (le paramètre EnviroName).
     //Le texte devrait se trouver en haut (suggéré 100).
-
+    auto text = rootEnviroEmitter->AddNew<LE::GOText>(GetScreenWidth()/2, 100, EnviroName);
+    text->SetColor(WHITE);
+    text->SetFontSize(20);
     //Allez ensuite dans LE::GOParticleEmitter::PreUpdate()
     ///////////////////////////
 
